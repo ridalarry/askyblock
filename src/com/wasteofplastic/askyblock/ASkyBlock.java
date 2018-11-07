@@ -54,7 +54,6 @@ import com.wasteofplastic.askyblock.listeners.CleanSuperFlat;
 import com.wasteofplastic.askyblock.listeners.EntityLimits;
 import com.wasteofplastic.askyblock.listeners.FlyingMobEvents;
 import com.wasteofplastic.askyblock.listeners.IslandGuard;
-import com.wasteofplastic.askyblock.listeners.IslandGuard1_8;
 import com.wasteofplastic.askyblock.listeners.IslandGuard1_9;
 import com.wasteofplastic.askyblock.listeners.JoinLeaveEvents;
 import com.wasteofplastic.askyblock.listeners.LavaCheck;
@@ -716,10 +715,6 @@ public class ASkyBlock extends JavaPlugin {
             }
         } catch (ClassNotFoundException e) {
             manager.registerEvents(new PlayerEvents2(this), this);
-        }
-        // New V1.8 events
-        if (onePointEight) {
-            manager.registerEvents(new IslandGuard1_8(this), this);
         }
         // Check for 1.9 material
         for (Material m : Material.values()) {

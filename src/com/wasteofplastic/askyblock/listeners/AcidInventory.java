@@ -244,7 +244,7 @@ public class AcidInventory implements Listener {
             break;
         }
         // plugin.getLogger().info(lastBlock.getType().toString());
-        if (lastBlock.getType().equals(Material.WATER) || lastBlock.getType().equals(Material.STATIONARY_WATER)
+        if (lastBlock.getType().equals(Material.WATER) || lastBlock.getType().equals(Material.LEGACY_STATIONARY_WATER)
                 || lastBlock.getType().equals(Material.CAULDRON)) {
             // They *may* have filled a bottle with water
             // Check inventory for POTIONS in a tick

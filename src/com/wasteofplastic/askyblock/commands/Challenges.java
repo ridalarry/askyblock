@@ -438,7 +438,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
             if (element.length == 2) {
                 try {
                     if (StringUtils.isNumeric(element[0])) {
-                        rewardItem = Material.getMaterial(Integer.parseInt(element[0]));
+                        rewardItem = Material.getMaterial(element[0].toUpperCase());
                     } else {
                         rewardItem = Material.getMaterial(element[0].toUpperCase());
                     }
@@ -476,7 +476,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
             } else if (element.length == 3) {
                 try {
                     if (StringUtils.isNumeric(element[0])) {
-                        rewardItem = Material.getMaterial(Integer.parseInt(element[0]));
+                        rewardItem = Material.getMaterial(element[0].toUpperCase());
                     } else {
                         rewardItem = Material.getMaterial(element[0].toUpperCase());
                     }
@@ -487,7 +487,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                     } else {
                         ItemStack item = null;
                         // Normal item, not a potion, check if it is a Monster Egg
-                        if (rewardItem.equals(Material.MONSTER_EGG)) {
+                        if (rewardItem.equals(Material.LEGACY_MONSTER_EGG)) {
 
                             try {                                
                                 EntityType type = EntityType.valueOf(element[1].toUpperCase());
@@ -570,7 +570,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                 // Potion format = POTION:name:level:extended:splash:qty
                 try {
                     if (StringUtils.isNumeric(element[0])) {
-                        rewardItem = Material.getMaterial(Integer.parseInt(element[0]));
+                        rewardItem = Material.getMaterial(element[0].toUpperCase());
                     } else {
                         rewardItem = Material.getMaterial(element[0].toUpperCase());
                     }
@@ -996,7 +996,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                             }
                             // TODO: add netherwart vs. netherstalk?
                             if (StringUtils.isNumeric(part[0])) {
-                                reqItem = Material.getMaterial(Integer.parseInt(part[0]));
+                                reqItem = Material.getMaterial(part[0].toUpperCase());
                             } else {
                                 reqItem = Material.getMaterial(part[0].toUpperCase());
                             }
@@ -1115,7 +1115,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                             part[0] = "SKULL_ITEM";
                         }
                         if (StringUtils.isNumeric(part[0])) {
-                            reqItem = Material.getMaterial(Integer.parseInt(part[0]));
+                            reqItem = Material.getMaterial(part[0].toUpperCase());
                         } else {
                             reqItem = Material.getMaterial(part[0].toUpperCase());
                         }
@@ -1127,7 +1127,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                         if (StringUtils.isNumeric(part[1])) {
                             reqDurability = Integer.parseInt(part[1]);
                             item.setDurability((short) reqDurability);
-                        } else if (reqItem.equals(Material.MONSTER_EGG)){
+                        } else if (reqItem.equals(Material.LEGACY_MONSTER_EGG)){
                             entityIsString = true;
                             reqDurability = -1; // non existent
                             try {
@@ -1148,7 +1148,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                         for (Entry<Integer, ? extends ItemStack> en : player.getInventory().all(reqItem).entrySet()) {
                             // Get the item
                             ItemStack i = en.getValue();
-                            if (i.hasItemMeta() && !i.getType().equals(Material.MONSTER_EGG)) {
+                            if (i.hasItemMeta() && !i.getType().equals(Material.LEGACY_MONSTER_EGG)) {
                                 continue;
                             }
                             if (i.getDurability() == reqDurability || (entityIsString && i.getItemMeta().equals(item.getItemMeta()))) {
@@ -1503,7 +1503,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                         } else {	
                             Material item;
                             if (StringUtils.isNumeric(sPart[0])) {
-                                item = Material.getMaterial(Integer.parseInt(sPart[0]));
+                                item = Material.getMaterial(sPart[0].toUpperCase());
                             } else {
                                 item = Material.getMaterial(sPart[0].toUpperCase());
                             }
@@ -1706,7 +1706,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                 // Add a navigation book
                 List<String> lore = new ArrayList<String>();
                 if (i <= levelDone) {
-                    CPItem item = new CPItem(Material.BOOK_AND_QUILL, ChatColor.GOLD + Settings.challengeLevels.get(i), null, null);
+                    CPItem item = new CPItem(Material.LEGACY_BOOK_AND_QUILL, ChatColor.GOLD + Settings.challengeLevels.get(i), null, null);
                     lore = Util.chop(ChatColor.WHITE, plugin.myLocale(player.getUniqueId()).challengesNavigation.replace("[level]", Settings.challengeLevels.get(i)), 25);
                     item.setNextSection(Settings.challengeLevels.get(i));
                     item.setLore(lore);
@@ -1793,7 +1793,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                         iconName = "NETHER_STALK";
                     }
                     if (StringUtils.isNumeric(iconName)) {
-                        icon = new ItemStack(Integer.parseInt(iconName));
+                        icon = new ItemStack(Material.valueOf(iconName));
                     } else {
                         icon = new ItemStack(Material.valueOf(iconName));
                     }
@@ -1807,7 +1807,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                     }
                 } else if (split.length == 2) {
                     if (StringUtils.isNumeric(split[0])) {
-                        icon = new ItemStack(Integer.parseInt(split[0]));
+                        icon = new ItemStack(Material.valueOf(split[0]));
                     } else {
                         icon = new ItemStack(Material.valueOf(split[0]));
                     }
@@ -1826,7 +1826,7 @@ public class Challenges implements CommandExecutor, TabCompleter {
                             } 
                             icon.setItemMeta(potionMeta);
                         }
-                    } else if (icon.getType().equals(Material.MONSTER_EGG)) {
+                    } else if (icon.getType().equals(Material.LEGACY_MONSTER_EGG)) {
                         // Handle monster egg icons
                         try {                                
                             EntityType type = EntityType.valueOf(split[1].toUpperCase());

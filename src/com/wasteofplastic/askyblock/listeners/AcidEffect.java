@@ -132,7 +132,7 @@ public class AcidEffect implements Listener {
             // Only check if they are in a non-dry biome
             Biome biome = playerLoc.getBlock().getBiome();
             if (biome != Biome.DESERT && biome != Biome.DESERT_HILLS
-                    && biome != Biome.SAVANNA && biome != Biome.MESA && biome != Biome.HELL) {
+                    && biome != Biome.SAVANNA && biome != Biome.BADLANDS_PLATEAU && biome != Biome.NETHER) {
                 if (isSafeFromRain(player)) {
                     // plugin.getLogger().info("DEBUG: not hit by rain");
                     wetPlayers.remove(player);
@@ -294,9 +294,9 @@ public class AcidEffect implements Listener {
         // In liquid
         Material bodyMat = player.getLocation().getBlock().getType();
         Material headMat = player.getLocation().getBlock().getRelative(BlockFace.UP).getType();
-        if (bodyMat.equals(Material.STATIONARY_WATER))
+        if (bodyMat.equals(Material.LEGACY_STATIONARY_WATER))
             bodyMat = Material.WATER;
-        if (headMat.equals(Material.STATIONARY_WATER))
+        if (headMat.equals(Material.LEGACY_STATIONARY_WATER))
             headMat = Material.WATER;
         if (bodyMat != Material.WATER && headMat != Material.WATER) {
             if (DEBUG)
@@ -431,7 +431,7 @@ public class AcidEffect implements Listener {
         if (helmet != null) {
             if (helmet.getType() == Material.LEATHER_HELMET)
                 red = red + 0.04;
-            else if (helmet.getType() == Material.GOLD_HELMET)
+            else if (helmet.getType() == Material.LEGACY_GOLD_HELMET)
                 red = red + 0.08;
             else if (helmet.getType() == Material.CHAINMAIL_HELMET)
                 red = red + 0.08;
@@ -443,7 +443,7 @@ public class AcidEffect implements Listener {
         if (boots != null) {
             if (boots.getType() == Material.LEATHER_BOOTS)
                 red = red + 0.04;
-            else if (boots.getType() == Material.GOLD_BOOTS)
+            else if (boots.getType() == Material.LEGACY_GOLD_BOOTS)
                 red = red + 0.04;
             else if (boots.getType() == Material.CHAINMAIL_BOOTS)
                 red = red + 0.04;
@@ -456,7 +456,7 @@ public class AcidEffect implements Listener {
         if (pants != null) {
             if (pants.getType() == Material.LEATHER_LEGGINGS)
                 red = red + 0.08;
-            else if (pants.getType() == Material.GOLD_LEGGINGS)
+            else if (pants.getType() == Material.LEGACY_GOLD_LEGGINGS)
                 red = red + 0.12;
             else if (pants.getType() == Material.CHAINMAIL_LEGGINGS)
                 red = red + 0.16;
@@ -469,7 +469,7 @@ public class AcidEffect implements Listener {
         if (chest != null) {
             if (chest.getType() == Material.LEATHER_CHESTPLATE)
                 red = red + 0.12;
-            else if (chest.getType() == Material.GOLD_CHESTPLATE)
+            else if (chest.getType() == Material.LEGACY_GOLD_CHESTPLATE)
                 red = red + 0.20;
             else if (chest.getType() == Material.CHAINMAIL_CHESTPLATE)
                 red = red + 0.20;

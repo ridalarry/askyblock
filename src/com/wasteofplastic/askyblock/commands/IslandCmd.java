@@ -229,7 +229,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
             schematics.get("nether").setName("NetherBlock Island");
             schematics.get("nether").setDescription("Nether Island");
             schematics.get("nether").setPartnerName("default");
-            schematics.get("nether").setBiome(Biome.HELL);
+            schematics.get("nether").setBiome(Biome.NETHER);
             schematics.get("nether").setIcon(Material.NETHERRACK);
             schematics.get("nether").setVisible(false);
             schematics.get("nether").setPasteEntities(true);
@@ -285,7 +285,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                             // Support damage values
                             String[] split = iconString.split(":");
                             if (StringUtils.isNumeric(split[0])) {
-                                icon = Material.getMaterial(Integer.parseInt(split[0]));
+                            	icon = null;
                                 if (icon == null) {
                                     icon = Material.MAP;
                                     plugin.getLogger().severe("Schematic's icon could not be found. Try using quotes like '17:2'");
@@ -351,7 +351,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                         // Visible in GUI or not
                         newSchem.setVisible(schemSection.getBoolean("schematics." + key + ".show",true));
                         // Partner schematic
-                        if (biome != null && biome.equals(Biome.HELL)) {
+                        if (biome != null && biome.equals(Biome.NETHER)) {
                             // Default for nether biomes is the default overworld island
                             newSchem.setPartnerName(schemSection.getString("schematics." + key + ".partnerSchematic","default"));
                         } else {
@@ -417,7 +417,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                                     } else {
                                         Material mat;
                                         if (StringUtils.isNumeric(amountdata[0])) {
-                                            mat = Material.getMaterial(Integer.parseInt(amountdata[0]));
+                                            mat = Material.getMaterial(amountdata[0].toUpperCase());
                                         } else {
                                             mat = Material.getMaterial(amountdata[0].toUpperCase());
                                         }
@@ -452,7 +452,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                             try {
                                 Material playerSpawnBlock;
                                 if (StringUtils.isNumeric(spawnBlock)) {
-                                    playerSpawnBlock = Material.getMaterial(Integer.parseInt(spawnBlock));
+                                    playerSpawnBlock = Material.AIR;
                                 } else {
                                     playerSpawnBlock = Material.valueOf(spawnBlock.toUpperCase());
                                 }
@@ -637,7 +637,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                 // Only add if it's visible
                 if (schematic.isVisible()) {
                     // Check if it's a nether island, but the nether is not enables
-                    if (schematic.getBiome().equals(Biome.HELL)) {
+                    if (schematic.getBiome().equals(Biome.NETHER)) {
                         if (Settings.createNether && Settings.newNether && ASkyBlock.getNetherWorld() != null) {
                             result.add(schematic);
                         }
@@ -2343,7 +2343,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                                         }
                                         // Find out which direction the warp is facing
                                         Block b = warpSpot.getBlock();
-                                        if (b.getType().equals(Material.SIGN_POST) || b.getType().equals(Material.WALL_SIGN)) {
+                                        if (b.getType().equals(Material.LEGACY_SIGN_POST) || b.getType().equals(Material.WALL_SIGN)) {
                                             Sign sign = (Sign) b.getState();
                                             org.bukkit.material.Sign s = (org.bukkit.material.Sign) sign.getData();
                                             BlockFace directionFacing = s.getFacing();
@@ -2366,7 +2366,7 @@ public class IslandCmd implements CommandExecutor, TabCompleter {
                                         if (!(GridManager.isSafeLocation(warpSpot))) {
                                             Util.sendMessage(player, ChatColor.RED + plugin.myLocale(player.getUniqueId()).warpserrorNotSafe);
                                             // WALL_SIGN's will always be unsafe if the place in front is obscured.
-                                            if (b.getType().equals(Material.SIGN_POST)) {
+                                            if (b.getType().equals(Material.LEGACY_SIGN_POST)) {
                                                 plugin.getLogger().warning(
                                                         "Unsafe warp found at " + warpSpot.toString() + " owned by " + plugin.getPlayers().getName(foundWarp));
 

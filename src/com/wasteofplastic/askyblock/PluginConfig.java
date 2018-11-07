@@ -176,7 +176,7 @@ public class PluginConfig {
                                 try {
                                     tempChest[i] = new SpawnEgg1_9(type).toItemStack(Integer.parseInt(amountdata[2]));
                                 } catch (Exception ex) {
-                                    tempChest[i] = new ItemStack(Material.MONSTER_EGG);
+                                    tempChest[i] = new ItemStack(Material.LEGACY_MONSTER_EGG);
                                     plugin.getLogger().severe("Monster eggs not supported with this server version.");
                                 }
                             }
@@ -200,7 +200,7 @@ public class PluginConfig {
                     } else {
                         Material mat;
                         if (StringUtils.isNumeric(amountdata[0])) {
-                            mat = Material.getMaterial(Integer.parseInt(amountdata[0]));
+                            mat = Material.getMaterial(amountdata[0].toUpperCase());
                         } else {
                             mat = Material.getMaterial(amountdata[0].toUpperCase());
                         }
@@ -887,7 +887,7 @@ public class PluginConfig {
                     }
                     Material mat;
                     if (StringUtils.isNumeric(split[0])) {
-                        mat = Material.getMaterial(Integer.parseInt(split[0]));
+                        mat = Material.valueOf(split[0].toUpperCase());
                     } else {
                         mat = Material.valueOf(split[0].toUpperCase());
                     }
@@ -913,8 +913,8 @@ public class PluginConfig {
                     }
                     MaterialData materialData = null;
                     if (StringUtils.isNumeric(split[0])) {
-                        materialData = new MaterialData(Integer.parseInt(split[0]));
-                    } else {
+                        materialData = new MaterialData(Material.valueOf(split[0].toUpperCase()));
+                        } else {
                         materialData = new MaterialData(Material.valueOf(split[0].toUpperCase()));
                     }
 

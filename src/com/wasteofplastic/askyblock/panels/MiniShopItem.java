@@ -79,7 +79,7 @@ public class MiniShopItem {
                 // plugin.getLogger().info("DEBUG: extra is not empty");                
                 // If it not a potion, then the extras should just be durability
                 if (!material.name().contains("POTION")) {
-                    if (material.equals(Material.MONSTER_EGG)) {
+                    if (material.equals(Material.LEGACY_MONSTER_EGG)) {
                         try {
                             EntityType type = EntityType.valueOf(extra.toUpperCase());
                             if (Bukkit.getServer().getVersion().contains("(MC: 1.8") || Bukkit.getServer().getVersion().contains("(MC: 1.7")) {
@@ -101,7 +101,7 @@ public class MiniShopItem {
                                 }
                             }
                         }
-                    } else if (!material.equals(Material.MOB_SPAWNER)) {
+                    } else if (!material.equals(Material.LEGACY_MOB_SPAWNER)) {
                         item.setDurability(Short.parseShort(extra));
                     }
                 } else {
@@ -117,7 +117,7 @@ public class MiniShopItem {
             List<String> desc = new ArrayList<String>(Arrays.asList(description.split("\\|")));
             meta.setDisplayName(desc.get(0));
             ArrayList<String> buyAndSell = new ArrayList<String>();
-            if (material.equals(Material.MOB_SPAWNER) && !extra.isEmpty()) {
+            if (material.equals(Material.LEGACY_MOB_SPAWNER) && !extra.isEmpty()) {
                 //Bukkit.getLogger().info("DEBUG: mob spawner and extra is " + extra);
                 // Get the entity type
                 for (EntityType type : EntityType.values()) {
@@ -177,7 +177,7 @@ public class MiniShopItem {
         ItemMeta meta = temp.getItemMeta();
         meta.setDisplayName(null);
         List<String> lore = new ArrayList<String>(1);
-        if (item.getType().equals(Material.MOB_SPAWNER)) {  
+        if (item.getType().equals(Material.LEGACY_MOB_SPAWNER)) {  
             lore.add(Util.prettifyText(entityType.name()));
         }
         meta.setLore(lore);
@@ -296,7 +296,7 @@ public class MiniShopItem {
         // item, color, etc.
         short damage = item.getDurability();
         switch (mat) {
-        case WOOL:
+        case LEGACY_WOOL:
             switch ((int) damage) {
             case 0:
                 return "WHITE_WOOL";
@@ -332,7 +332,7 @@ public class MiniShopItem {
                 return "BLACK_WOOL";
             }
             return mat.toString();
-        case INK_SACK:
+        case LEGACY_INK_SACK:
             switch ((int) damage) {
             case 0:
                 return "INK_SAC";
@@ -368,7 +368,7 @@ public class MiniShopItem {
                 return "BONE_MEAL";
             }
             return mat.toString();
-        case SMOOTH_BRICK:
+        case LEGACY_SMOOTH_BRICK:
             switch ((int) damage) {
             case 0:
                 return "STONE_BRICKS";
@@ -449,7 +449,7 @@ public class MiniShopItem {
                 return prefix + effects + suffix;
             }
             return mat.toString();
-        case SAPLING:
+        case LEGACY_SAPLING:
             switch ((int) damage) {
             case 0:
                 return "OAK_SAPLING";
@@ -466,7 +466,7 @@ public class MiniShopItem {
             }
             return mat.toString();
 
-        case WOOD:
+        case LEGACY_WOOD:
             switch ((int) damage) {
             case 0:
                 return "OAK_PLANKS";
@@ -482,7 +482,7 @@ public class MiniShopItem {
                 return "Dark Oak Planks";
             }
             return mat.toString();
-        case LOG:
+        case LEGACY_LOG:
             switch (damage) {
             case 0:
                 return "OAK_LOG";
@@ -494,7 +494,7 @@ public class MiniShopItem {
                 return "JUNGLE_LOG";
             }
             return mat.toString();
-        case LEAVES:
+        case LEGACY_LEAVES:
             damage = (short) (damage % 4);
             switch (damage) {
             case 0:
@@ -525,7 +525,7 @@ public class MiniShopItem {
                 return "SMOOTH_SANDSTONE";
             }
             return mat.toString();
-        case LONG_GRASS:
+        case LEGACY_LONG_GRASS:
             switch ((int) damage) {
             case 0:
                 return "DEAD_SHRUB";
@@ -535,7 +535,7 @@ public class MiniShopItem {
                 return "FERN";
             }
             return mat.toString();
-        case STEP:
+        case LEGACY_STEP:
             switch ((int) damage) {
             case 0:
                 return "STONE_SLAB";
@@ -555,7 +555,7 @@ public class MiniShopItem {
                 return "Quartz Slab";
             }
             return mat.toString();
-        case MONSTER_EGG:
+        case LEGACY_MONSTER_EGG:
             switch ((int) damage) {
             case 50:
                 return "CREEPER_EGG";
@@ -620,7 +620,7 @@ public class MiniShopItem {
                 return "PRIMED_TNT_EGG";
             }
             return mat.toString();
-        case SKULL_ITEM:
+        case LEGACY_SKULL_ITEM:
             switch ((int) damage) {
             case 0:
                 return "SKELETON_SKULL";
@@ -634,27 +634,27 @@ public class MiniShopItem {
                 return "CREEPER_HEAD";
             }
             break;
-        case REDSTONE_TORCH_OFF:
-        case REDSTONE_TORCH_ON:
+        case LEGACY_REDSTONE_TORCH_OFF:
+        case LEGACY_REDSTONE_TORCH_ON:
             return "REDSTONE_TORCH";
-        case NETHER_STALK:
+        case LEGACY_NETHER_STALK:
             return "NETHER_WART";
-        case WEB:
+        case LEGACY_WEB:
             return "COBWEB";
-        case THIN_GLASS:
+        case LEGACY_THIN_GLASS:
             return "GLASS_PANE";
-        case IRON_FENCE:
+        case LEGACY_IRON_FENCE:
             return "IRON_BARS";
-        case WORKBENCH:
+        case LEGACY_WORKBENCH:
             return "CRAFTING_TABLE";
-        case REDSTONE_LAMP_ON:
-        case REDSTONE_LAMP_OFF:
+        case LEGACY_REDSTONE_LAMP_ON:
+        case LEGACY_REDSTONE_LAMP_OFF:
             return "REDSTONE_LAMP";
-        case POTATO_ITEM:
+        case LEGACY_POTATO_ITEM:
             return "POTATO";
-        case SULPHUR:
+        case LEGACY_SULPHUR:
             return "GUNPOWDER";
-        case CARROT_ITEM:
+        case LEGACY_CARROT_ITEM:
             return "CARROT";
         case GOLDEN_APPLE:
             switch ((int) damage) {
@@ -676,11 +676,11 @@ public class MiniShopItem {
                 return "VERY_DAMAGED:ANVIL";
             }
             break;
-        case EXP_BOTTLE:
+        case LEGACY_EXP_BOTTLE:
             return "BOTTLE_O'_ENCHANTING";
-        case FIREWORK_CHARGE:
+        case LEGACY_FIREWORK_CHARGE:
             return "FIREWORK_STAR";
-        case FIREBALL:
+        case LEGACY_FIREBALL:
             return "FIREWORK_CHARGE";
         case ACACIA_STAIRS:
             break;
@@ -696,19 +696,19 @@ public class MiniShopItem {
             break;
         case BEACON:
             break;
-        case BED:
+        case LEGACY_BED:
             break;
         case BEDROCK:
             break;
-        case BED_BLOCK:
+        case LEGACY_BED_BLOCK:
             break;
-        case BIRCH_WOOD_STAIRS:
+        case LEGACY_BIRCH_WOOD_STAIRS:
             break;
         case BLAZE_POWDER:
             break;
         case BLAZE_ROD:
             break;
-        case BOAT:
+        case LEGACY_BOAT:
             break;
         case BONE:
             break;
@@ -716,7 +716,7 @@ public class MiniShopItem {
             break;
         case BOOKSHELF:
             break;
-        case BOOK_AND_QUILL:
+        case LEGACY_BOOK_AND_QUILL:
             break;
         case BOW:
             break;
@@ -726,7 +726,7 @@ public class MiniShopItem {
             break;
         case BREWING_STAND:
             break;
-        case BREWING_STAND_ITEM:
+        case LEGACY_BREWING_STAND_ITEM:
             return "Brewing Stand";
         case BRICK:
             break;
@@ -736,15 +736,15 @@ public class MiniShopItem {
             break;
         case BUCKET:
             break;
-        case BURNING_FURNACE:
+        case LEGACY_BURNING_FURNACE:
             break;
         case CACTUS:
             break;
         case CAKE:
             break;
-        case CAKE_BLOCK:
+        case LEGACY_CAKE_BLOCK:
             break;
-        case CARPET:
+        case LEGACY_CARPET:
             switch ((int) damage) {
             case 0:
                 return "WHITE_CARPET";
@@ -782,11 +782,11 @@ public class MiniShopItem {
             return mat.toString();
         case CARROT:
             break;
-        case CARROT_STICK:
+        case LEGACY_CARROT_STICK:
             break;
         case CAULDRON:
             break;
-        case CAULDRON_ITEM:
+        case LEGACY_CAULDRON_ITEM:
             return "CAULDRON";
         case CHAINMAIL_BOOTS:
             break;
@@ -802,7 +802,7 @@ public class MiniShopItem {
             break;
         case CLAY_BALL:
             break;
-        case CLAY_BRICK:
+        case LEGACY_CLAY_BRICK:
             break;
         case COAL_BLOCK:
             break;
@@ -812,13 +812,13 @@ public class MiniShopItem {
             break;
         case COBBLESTONE_STAIRS:
             break;
-        case COBBLE_WALL:
+        case LEGACY_COBBLE_WALL:
             break;
         case COCOA:
             break;
-        case COMMAND:
+        case LEGACY_COMMAND:
             return "COMMAND_BLOCK";
-        case COMMAND_MINECART:
+        case LEGACY_COMMAND_MINECART:
             break;
         case COMPASS:
             break;
@@ -826,11 +826,11 @@ public class MiniShopItem {
             break;
         case COOKED_CHICKEN:
             break;
-        case COOKED_FISH:
+        case LEGACY_COOKED_FISH:
             break;
         case COOKIE:
             break;
-        case CROPS:
+        case LEGACY_CROPS:
             break;
         case DARK_OAK_STAIRS:
             break;
@@ -844,7 +844,7 @@ public class MiniShopItem {
             break;
         case DIAMOND_AXE:
             break;
-        case DIAMOND_BARDING:
+        case LEGACY_DIAMOND_BARDING:
             break;
         case DIAMOND_BLOCK:
             break;
@@ -862,21 +862,21 @@ public class MiniShopItem {
             break;
         case DIAMOND_PICKAXE:
             break;
-        case DIAMOND_SPADE:
+        case LEGACY_DIAMOND_SPADE:
             return "Diamond Shovel";
         case DIAMOND_SWORD:
             break;
-        case DIODE:
+        case LEGACY_DIODE:
             break;
-        case DIODE_BLOCK_OFF:
+        case LEGACY_DIODE_BLOCK_OFF:
             break;
-        case DIODE_BLOCK_ON:
+        case LEGACY_DIODE_BLOCK_ON:
             break;
         case DIRT:
             break;
         case DISPENSER:
             break;
-        case DOUBLE_PLANT:
+        case LEGACY_DOUBLE_PLANT:
             switch ((int) damage) {
             case 0:
                 return "SUNFLOWER";
@@ -892,7 +892,7 @@ public class MiniShopItem {
                 return "Peony";
             }
             break;
-        case DOUBLE_STEP:
+        case LEGACY_DOUBLE_STEP:
             switch ((int) damage) {
             case 0:
                 return "STONE_SLAB (DOUBLE)";
@@ -928,43 +928,43 @@ public class MiniShopItem {
             break;
         case EMERALD_ORE:
             break;
-        case EMPTY_MAP:
+        case LEGACY_EMPTY_MAP:
             break;
         case ENCHANTED_BOOK:
             break;
-        case ENCHANTMENT_TABLE:
+        case LEGACY_ENCHANTMENT_TABLE:
             break;
         case ENDER_CHEST:
             break;
         case ENDER_PEARL:
             break;
-        case ENDER_PORTAL:
+        case LEGACY_ENDER_PORTAL:
             break;
-        case ENDER_PORTAL_FRAME:
+        case LEGACY_ENDER_PORTAL_FRAME:
             break;
-        case ENDER_STONE:
+        case LEGACY_ENDER_STONE:
             break;
-        case EXPLOSIVE_MINECART:
+        case LEGACY_EXPLOSIVE_MINECART:
             break;
-        case EYE_OF_ENDER:
+        case LEGACY_EYE_OF_ENDER:
             break;
         case FEATHER:
             break;
-        case FENCE:
+        case LEGACY_FENCE:
             break;
-        case FENCE_GATE:
+        case LEGACY_FENCE_GATE:
             break;
         case FERMENTED_SPIDER_EYE:
             break;
         case FIRE:
             break;
-        case FIREWORK:
+        case LEGACY_FIREWORK:
             return "Firework Rocket";
         case FLINT:
             break;
         case FLINT_AND_STEEL:
             break;
-        case FLOWER_POT_ITEM:
+        case LEGACY_FLOWER_POT_ITEM:
             return "Flower Pot";
         case FURNACE:
             break;
@@ -974,7 +974,7 @@ public class MiniShopItem {
             break;
         case GLASS_BOTTLE:
             break;
-        case GLOWING_REDSTONE_ORE:
+        case LEGACY_GLOWING_REDSTONE_ORE:
             break;
         case GLOWSTONE:
             break;
@@ -982,47 +982,47 @@ public class MiniShopItem {
             break;
         case GOLDEN_CARROT:
             break;
-        case GOLD_AXE:
+        case LEGACY_GOLD_AXE:
             break;
-        case GOLD_BARDING:
+        case LEGACY_GOLD_BARDING:
             return "Gold Horse Armor";
         case GOLD_BLOCK:
             break;
-        case GOLD_BOOTS:
+        case LEGACY_GOLD_BOOTS:
             return "Golden Boots";
-        case GOLD_CHESTPLATE:
+        case LEGACY_GOLD_CHESTPLATE:
             return "Golden Chestplate";
-        case GOLD_HELMET:
+        case LEGACY_GOLD_HELMET:
             return "Golden Helmet";
-        case GOLD_HOE:
+        case LEGACY_GOLD_HOE:
             return "Golden Hoe";
         case GOLD_INGOT:
             break;
-        case GOLD_LEGGINGS:
+        case LEGACY_GOLD_LEGGINGS:
             return "Golden Leggings";
         case GOLD_NUGGET:
             break;
         case GOLD_ORE:
             break;
-        case GOLD_PICKAXE:
+        case LEGACY_GOLD_PICKAXE:
             return "Golden_Pickaxe";
-        case GOLD_PLATE:
+        case LEGACY_GOLD_PLATE:
             return "Weighted_Pressure_Plate_(Light)";
-        case GOLD_RECORD:
+        case LEGACY_GOLD_RECORD:
             return "Golden Record";
-        case GOLD_SPADE:
+        case LEGACY_GOLD_SPADE:
             return "Golden Shovel";
-        case GOLD_SWORD:
+        case LEGACY_GOLD_SWORD:
             return "Golden Sword";
         case GRASS:
             break;
         case GRAVEL:
             break;
-        case GREEN_RECORD:
+        case LEGACY_GREEN_RECORD:
             break;
-        case GRILLED_PORK:
+        case LEGACY_GRILLED_PORK:
             break;
-        case HARD_CLAY:
+        case LEGACY_HARD_CLAY:
             break;
         case HAY_BLOCK:
             break;
@@ -1030,15 +1030,15 @@ public class MiniShopItem {
             break;
         case HOPPER_MINECART:
             break;
-        case HUGE_MUSHROOM_1:
+        case LEGACY_HUGE_MUSHROOM_1:
             break;
-        case HUGE_MUSHROOM_2:
+        case LEGACY_HUGE_MUSHROOM_2:
             break;
         case ICE:
             break;
         case IRON_AXE:
             break;
-        case IRON_BARDING:
+        case LEGACY_IRON_BARDING:
             return "Iron_Horse_Armor";
         case IRON_BLOCK:
             break;
@@ -1048,7 +1048,7 @@ public class MiniShopItem {
             break;
         case IRON_DOOR:
             break;
-        case IRON_DOOR_BLOCK:
+        case LEGACY_IRON_DOOR_BLOCK:
             break;
         case IRON_HELMET:
             break;
@@ -1062,9 +1062,9 @@ public class MiniShopItem {
             break;
         case IRON_PICKAXE:
             break;
-        case IRON_PLATE:
+        case LEGACY_IRON_PLATE:
             break;
-        case IRON_SPADE:
+        case LEGACY_IRON_SPADE:
             return "Iron_Shovel";
         case IRON_SWORD:
             break;
@@ -1074,7 +1074,7 @@ public class MiniShopItem {
             return "Jack_O'Lantern";
         case JUKEBOX:
             break;
-        case JUNGLE_WOOD_STAIRS:
+        case LEGACY_JUNGLE_WOOD_STAIRS:
             break;
         case LADDER:
             break;
@@ -1086,7 +1086,7 @@ public class MiniShopItem {
             break;
         case LAVA_BUCKET:
             break;
-        case LEASH:
+        case LEGACY_LEASH:
             break;
         case LEATHER:
             break;
@@ -1098,7 +1098,7 @@ public class MiniShopItem {
             break;
         case LEATHER_LEGGINGS:
             break;
-        case LEAVES_2:
+        case LEGACY_LEAVES_2:
             switch ((int) damage) {
             case 0:
                 return "Acacia_Leaves";
@@ -1108,7 +1108,7 @@ public class MiniShopItem {
             return mat.toString();
         case LEVER:
             break;
-        case LOG_2:
+        case LEGACY_LOG_2:
             switch ((int) damage) {
             case 0:
                 return "ACACIA_LOG";
@@ -1122,7 +1122,7 @@ public class MiniShopItem {
             break;
         case MELON:
             break;
-        case MELON_BLOCK:
+        case LEGACY_MELON_BLOCK:
             break;
         case MELON_SEEDS:
             break;
@@ -1132,15 +1132,15 @@ public class MiniShopItem {
             break;
         case MINECART:
             break;
-        case MOB_SPAWNER:
+        case LEGACY_MOB_SPAWNER:
             break;
-        case MONSTER_EGGS:
+        case LEGACY_MONSTER_EGGS:
             break;
         case MOSSY_COBBLESTONE:
             break;
-        case MUSHROOM_SOUP:
+        case LEGACY_MUSHROOM_SOUP:
             break;
-        case MYCEL:
+        case LEGACY_MYCEL:
             return "MYCELIUM";
         case NAME_TAG:
             break;
@@ -1148,15 +1148,15 @@ public class MiniShopItem {
             break;
         case NETHER_BRICK:
             break;
-        case NETHER_BRICK_ITEM:
+        case LEGACY_NETHER_BRICK_ITEM:
             return "Nether Brick (Small)";
         case NETHER_BRICK_STAIRS:
             break;
-        case NETHER_FENCE:
+        case LEGACY_NETHER_FENCE:
             break;
         case NETHER_STAR:
             break;
-        case NETHER_WARTS:
+        case LEGACY_NETHER_WARTS:
             break;
         case NOTE_BLOCK:
             break;
@@ -1168,23 +1168,23 @@ public class MiniShopItem {
             break;
         case PAPER:
             break;
-        case PISTON_BASE:
+        case LEGACY_PISTON_BASE:
             break;
-        case PISTON_EXTENSION:
+        case LEGACY_PISTON_EXTENSION:
             break;
-        case PISTON_MOVING_PIECE:
+        case LEGACY_PISTON_MOVING_PIECE:
             break;
-        case PISTON_STICKY_BASE:
+        case LEGACY_PISTON_STICKY_BASE:
             break;
         case POISONOUS_POTATO:
             break;
-        case PORK:
+        case LEGACY_PORK:
             break;
-        case PORTAL:
+        case LEGACY_PORTAL:
             break;
         case POTATO:
             break;
-        case POWERED_MINECART:
+        case LEGACY_POWERED_MINECART:
             break;
         case POWERED_RAIL:
             break;
@@ -1200,47 +1200,47 @@ public class MiniShopItem {
             break;
         case QUARTZ_BLOCK:
             break;
-        case QUARTZ_ORE:
+        case LEGACY_QUARTZ_ORE:
             break;
         case QUARTZ_STAIRS:
             break;
-        case RAILS:
+        case LEGACY_RAILS:
             break;
-        case RAW_BEEF:
+        case LEGACY_RAW_BEEF:
             break;
-        case RAW_CHICKEN:
+        case LEGACY_RAW_CHICKEN:
             break;
-        case RAW_FISH:
+        case LEGACY_RAW_FISH:
             break;
-        case RECORD_10:
+        case LEGACY_RECORD_10:
             return "Ward Record";
-        case RECORD_11:
+        case LEGACY_RECORD_11:
             break;
-        case RECORD_12:
+        case LEGACY_RECORD_12:
             return "Wait Record (12)";
-        case RECORD_3:
+        case LEGACY_RECORD_3:
             return "Blocks Record (3)";
-        case RECORD_4:
+        case LEGACY_RECORD_4:
             return "Chirp Record (4)";
-        case RECORD_5:
+        case LEGACY_RECORD_5:
             return "Far Record (5)";
-        case RECORD_6:
+        case LEGACY_RECORD_6:
             return "Mall Record (6)";
-        case RECORD_7:
+        case LEGACY_RECORD_7:
             return "Mellohi Record (7)";
-        case RECORD_8:
+        case LEGACY_RECORD_8:
             return "Stal Record (8)";
-        case RECORD_9:
+        case LEGACY_RECORD_9:
             return "Strad Record (9)";
         case REDSTONE:
             break;
         case REDSTONE_BLOCK:
             break;
-        case REDSTONE_COMPARATOR:
+        case LEGACY_REDSTONE_COMPARATOR:
             break;
-        case REDSTONE_COMPARATOR_OFF:
+        case LEGACY_REDSTONE_COMPARATOR_OFF:
             break;
-        case REDSTONE_COMPARATOR_ON:
+        case LEGACY_REDSTONE_COMPARATOR_ON:
             break;
         case REDSTONE_ORE:
             break;
@@ -1248,7 +1248,7 @@ public class MiniShopItem {
             break;
         case RED_MUSHROOM:
             break;
-        case RED_ROSE:
+        case LEGACY_RED_ROSE:
             switch ((int) damage) {
             case 0:
                 return "POPPY";
@@ -1278,39 +1278,39 @@ public class MiniShopItem {
             break;
         case SANDSTONE_STAIRS:
             break;
-        case SEEDS:
+        case LEGACY_SEEDS:
             break;
         case SHEARS:
             break;
         case SIGN:
             break;
-        case SIGN_POST:
+        case LEGACY_SIGN_POST:
             break;
-        case SKULL:
+        case LEGACY_SKULL:
             break;
         case SLIME_BALL:
             break;
-        case SMOOTH_STAIRS:
+        case LEGACY_SMOOTH_STAIRS:
             break;
         case SNOW:
             break;
-        case SNOW_BALL:
+        case LEGACY_SNOW_BALL:
             break;
         case SNOW_BLOCK:
             break;
-        case SOIL:
+        case LEGACY_SOIL:
             break;
         case SOUL_SAND:
             break;
-        case SPECKLED_MELON:
+        case LEGACY_SPECKLED_MELON:
             return "Glistering Melon";
         case SPIDER_EYE:
             break;
         case SPONGE:
             break;
-        case SPRUCE_WOOD_STAIRS:
+        case LEGACY_SPRUCE_WOOD_STAIRS:
             break;
-        case STAINED_CLAY:
+        case LEGACY_STAINED_CLAY:
             switch ((int) damage) {
             case 0:
                 return "WHITE_STAINED_CLAY";
@@ -1346,7 +1346,7 @@ public class MiniShopItem {
                 return "BLACK_STAINED_CLAY";
             }
             return mat.toString();
-        case STAINED_GLASS:
+        case LEGACY_STAINED_GLASS:
             switch ((int) damage) {
             case 0:
                 return "WHITE_STAINED_GLASS";
@@ -1382,7 +1382,7 @@ public class MiniShopItem {
                 return "BLACK_STAINED_GLASS";
             }
             return mat.toString();
-        case STAINED_GLASS_PANE:
+        case LEGACY_STAINED_GLASS_PANE:
             switch ((int) damage) {
             case 0:
                 return "WHITE_STAINED_GLASS_PANE";
@@ -1418,9 +1418,9 @@ public class MiniShopItem {
                 return "BLACK_STAINED_GLASS_PANE";
             }
             return mat.toString();
-        case STATIONARY_LAVA:
+        case LEGACY_STATIONARY_LAVA:
             break;
-        case STATIONARY_WATER:
+        case LEGACY_STATIONARY_WATER:
             break;
         case STICK:
             break;
@@ -1434,13 +1434,13 @@ public class MiniShopItem {
             break;
         case STONE_PICKAXE:
             break;
-        case STONE_PLATE:
+        case LEGACY_STONE_PLATE:
             break;
-        case STONE_SPADE:
+        case LEGACY_STONE_SPADE:
             return "Stone Shovel";
         case STONE_SWORD:
             break;
-        case STORAGE_MINECART:
+        case LEGACY_STORAGE_MINECART:
             break;
         case STRING:
             break;
@@ -1448,7 +1448,7 @@ public class MiniShopItem {
             break;
         case SUGAR_CANE:
             break;
-        case SUGAR_CANE_BLOCK:
+        case LEGACY_SUGAR_CANE_BLOCK:
             break;
         case TNT:
             break;
@@ -1456,7 +1456,7 @@ public class MiniShopItem {
             break;
         case TRAPPED_CHEST:
             break;
-        case TRAP_DOOR:
+        case LEGACY_TRAP_DOOR:
             break;
         case TRIPWIRE:
             break;
@@ -1466,43 +1466,43 @@ public class MiniShopItem {
             break;
         case WALL_SIGN:
             break;
-        case WATCH:
+        case LEGACY_WATCH:
             break;
         case WATER:
             break;
         case WATER_BUCKET:
             break;
-        case WATER_LILY:
+        case LEGACY_WATER_LILY:
             break;
         case WHEAT:
             break;
-        case WOODEN_DOOR:
+        case LEGACY_WOODEN_DOOR:
             break;
-        case WOOD_AXE:
+        case LEGACY_WOOD_AXE:
             return "Wooden Axe";
-        case WOOD_BUTTON:
+        case LEGACY_WOOD_BUTTON:
             return "Wooden Button";
-        case WOOD_DOOR:
+        case LEGACY_WOOD_DOOR:
             return "Wooden Door";
-        case WOOD_DOUBLE_STEP:
+        case LEGACY_WOOD_DOUBLE_STEP:
             return "Wooden Double Step";
-        case WOOD_HOE:
+        case LEGACY_WOOD_HOE:
             return "Wooden Hoe";
-        case WOOD_PICKAXE:
+        case LEGACY_WOOD_PICKAXE:
             return "Wooden Pickaxe";
-        case WOOD_PLATE:
+        case LEGACY_WOOD_PLATE:
             return "Pressure Plate";
-        case WOOD_SPADE:
+        case LEGACY_WOOD_SPADE:
             return "Wooden Shovel";
-        case WOOD_STAIRS:
+        case LEGACY_WOOD_STAIRS:
             return "Wooden Stairs";
-        case WOOD_STEP:
+        case LEGACY_WOOD_STEP:
             return "Wooden Slab";
-        case WOOD_SWORD:
+        case LEGACY_WOOD_SWORD:
             return "Wooden Sword";
         case WRITTEN_BOOK:
             break;
-        case YELLOW_FLOWER:
+        case LEGACY_YELLOW_FLOWER:
             return "Dandelion";
         default:
             break;
@@ -1526,11 +1526,11 @@ public class MiniShopItem {
         case CHAINMAIL_HELMET:
         case CHAINMAIL_LEGGINGS:
 
-        case WOOD_AXE:
-        case WOOD_HOE:
-        case WOOD_PICKAXE:
-        case WOOD_SPADE:
-        case WOOD_SWORD:
+        case LEGACY_WOOD_AXE:
+        case LEGACY_WOOD_HOE:
+        case LEGACY_WOOD_PICKAXE:
+        case LEGACY_WOOD_SPADE:
+        case LEGACY_WOOD_SWORD:
 
         case LEATHER_BOOTS:
         case LEATHER_CHESTPLATE:
@@ -1540,7 +1540,7 @@ public class MiniShopItem {
         case DIAMOND_AXE:
         case DIAMOND_HOE:
         case DIAMOND_PICKAXE:
-        case DIAMOND_SPADE:
+        case LEGACY_DIAMOND_SPADE:
         case DIAMOND_SWORD:
 
         case DIAMOND_BOOTS:
@@ -1550,23 +1550,23 @@ public class MiniShopItem {
         case STONE_AXE:
         case STONE_HOE:
         case STONE_PICKAXE:
-        case STONE_SPADE:
+        case LEGACY_STONE_SPADE:
         case STONE_SWORD:
 
-        case GOLD_AXE:
-        case GOLD_HOE:
-        case GOLD_PICKAXE:
-        case GOLD_SPADE:
-        case GOLD_SWORD:
+        case LEGACY_GOLD_AXE:
+        case LEGACY_GOLD_HOE:
+        case LEGACY_GOLD_PICKAXE:
+        case LEGACY_GOLD_SPADE:
+        case LEGACY_GOLD_SWORD:
 
-        case GOLD_BOOTS:
-        case GOLD_CHESTPLATE:
-        case GOLD_HELMET:
-        case GOLD_LEGGINGS:
+        case LEGACY_GOLD_BOOTS:
+        case LEGACY_GOLD_CHESTPLATE:
+        case LEGACY_GOLD_HELMET:
+        case LEGACY_GOLD_LEGGINGS:
         case IRON_AXE:
         case IRON_HOE:
         case IRON_PICKAXE:
-        case IRON_SPADE:
+        case LEGACY_IRON_SPADE:
         case IRON_SWORD:
 
         case IRON_BOOTS:
