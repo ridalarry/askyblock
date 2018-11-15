@@ -262,32 +262,32 @@ public class SafeSpotTeleport {
                 // Unsafe
                 case ANVIL:
                 case BARRIER:
-                case BOAT:
+                case LEGACY_BOAT:
                 case CACTUS:
-                case DOUBLE_PLANT:
-                case ENDER_PORTAL:
+                case LEGACY_DOUBLE_PLANT:
+                case LEGACY_ENDER_PORTAL:
                 case FIRE:
                 case FLOWER_POT:
                 case LADDER:
                 case LAVA:
                 case LEVER:
-                case LONG_GRASS:
-                case PISTON_EXTENSION:
-                case PISTON_MOVING_PIECE:
-                case SIGN_POST:
-                case SKULL:
-                case STANDING_BANNER:
-                case STATIONARY_LAVA:
-                case STATIONARY_WATER:
+                case LEGACY_LONG_GRASS:
+                case LEGACY_PISTON_EXTENSION:
+                case LEGACY_PISTON_MOVING_PIECE:
+                case LEGACY_SIGN_POST:
+                case LEGACY_SKULL:
+                case LEGACY_STANDING_BANNER:
+                case LEGACY_STATIONARY_LAVA:
+                case LEGACY_STATIONARY_WATER:
                 case STONE_BUTTON:
                 case TORCH:
                 case TRIPWIRE:
                 case WATER:
-                case WEB:
-                case WOOD_BUTTON:
+                case LEGACY_WEB:
+                case LEGACY_WOOD_BUTTON:
                     //Block is dangerous
                     break;
-                case PORTAL:
+                case LEGACY_PORTAL:
                     if (portal) {
                         // A portal has been found, switch to non-portal mode now
                         portal = false;

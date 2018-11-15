@@ -202,7 +202,7 @@ public class NMSHandler implements NMSAbstraction {
      */
     public ItemStack getSpawnEgg(EntityType type, int amount) {
         //Bukkit.getLogger().info("DEBUG: setting spawn egg " + type.toString());
-        ItemStack item = new ItemStack(Material.MONSTER_EGG, amount);
+        ItemStack item = new ItemStack(Material.LEGACY_MONSTER_EGG, amount);
         net.minecraft.server.v1_13_R2.ItemStack stack = CraftItemStack.asNMSCopy(item);
         NBTTagCompound tagCompound = stack.getTag();
         if(tagCompound == null){

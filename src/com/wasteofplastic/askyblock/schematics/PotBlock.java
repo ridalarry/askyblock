@@ -44,14 +44,14 @@ public class PotBlock {
     static {
         potItemList = new HashMap<>();
         potItemList.put("", Material.AIR);
-        potItemList.put("minecraft:red_flower", Material.RED_ROSE);
-        potItemList.put("minecraft:yellow_flower", Material.YELLOW_FLOWER);
-        potItemList.put("minecraft:sapling", Material.SAPLING);
+        potItemList.put("minecraft:red_flower", Material.LEGACY_RED_ROSE);
+        potItemList.put("minecraft:yellow_flower", Material.LEGACY_YELLOW_FLOWER);
+        potItemList.put("minecraft:sapling", Material.LEGACY_SAPLING);
         potItemList.put("minecraft:red_mushroom", Material.RED_MUSHROOM);
         potItemList.put("minecraft:brown_mushroom", Material.BROWN_MUSHROOM);
         potItemList.put("minecraft:cactus", Material.CACTUS);
-        potItemList.put("minecraft:deadbush", Material.LONG_GRASS);
-        potItemList.put("minecraft:tallgrass", Material.LONG_GRASS);
+        potItemList.put("minecraft:deadbush", Material.LEGACY_LONG_GRASS);
+        potItemList.put("minecraft:tallgrass", Material.LEGACY_LONG_GRASS);
     }
 
     public boolean set(NMSAbstraction nms, Block block) {
@@ -92,27 +92,27 @@ public class PotBlock {
                 if(tileData.containsKey("Data")){
                     int dataTag = ((IntTag) tileData.get("Data")).getValue();
                     // We should check data for each type of potItem 
-                    if(potItem == Material.RED_ROSE){
+                    if(potItem == Material.LEGACY_RED_ROSE){
                         if(dataTag >= 0 && dataTag <= 8){
                             potItemData = dataTag;
                         } else {
                             // Prevent hacks
                             potItemData = 0;
                         }
-                    } else if(potItem == Material.YELLOW_FLOWER ||
+                    } else if(potItem == Material.LEGACY_YELLOW_FLOWER ||
                             potItem == Material.RED_MUSHROOM ||
                             potItem == Material.BROWN_MUSHROOM ||
                             potItem == Material.CACTUS){
                         // Set to 0 anyway
                         potItemData = 0;
-                    } else if(potItem == Material.SAPLING){
+                    } else if(potItem == Material.LEGACY_SAPLING){
                         if(dataTag >= 0 && dataTag <= 4){
                             potItemData = dataTag;
                         } else {
                             // Prevent hacks
                             potItemData = 0;
                         }
-                    } else if(potItem == Material.LONG_GRASS){
+                    } else if(potItem == Material.LEGACY_LONG_GRASS){
                         // Only 0 or 2
                         if(dataTag == 0 || dataTag == 2){
                             potItemData = dataTag;

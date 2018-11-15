@@ -222,7 +222,7 @@ public class SkullBlock {
     // Credits: GermanCoding
     @SuppressWarnings("deprecation")
     public static void setSkullWithNonPlayerProfile(String textureValue, String textureSignature, String ownerUUID, String ownerName, Skull skull) {
-        if (skull.getType() != Material.SKULL)
+        if (skull.getType() != Material.LEGACY_SKULL)
             throw new IllegalArgumentException("Block must be a skull.");
 
         skull.getWorld().refreshChunk(skull.getChunk().getX(), skull.getChunk().getZ());
